@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using ComHunt.Views;
+using Xamarin.Forms;
 
 namespace ComHunt
 {
@@ -8,7 +9,7 @@ namespace ComHunt
         {
             InitializeComponent();
 
-            MainPage = new ComHuntPage();
+            MainPage = new NavigationPage(new LoginPage(this));
         }
 
         protected override void OnStart()
