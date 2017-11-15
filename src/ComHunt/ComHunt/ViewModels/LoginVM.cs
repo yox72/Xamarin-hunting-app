@@ -10,13 +10,13 @@ namespace ComHunt.ViewModels
     public class LoginVM : INotifyPropertyChanged
     {
         private User _user;
-        private INavigation nav { get; set; }
+        private Page _page;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public LoginVM(INavigation navigation)
+        public LoginVM(Page page)
         {
-            nav = navigation;
+            _page = page;
             _user = new User() { Email = "Yohann", Password = "" };
             loginCommand = new Command(Login);
         }
@@ -24,12 +24,15 @@ namespace ComHunt.ViewModels
         public ICommand loginCommand { get; set; }
         public void Login()
         {
-            Email = "Ca marche pas";//on partira
+            //Email = "Ca marche pas";//on partira
 
             //nav.PushAsync(new WelcomePage());
-            App.Current.MainPage = new NavigationPage(new WelcomePage());
-
-           // App.Current.MainPage.Navigation.PushAsync(new WelcomePage());
+            //App.Current.MainPage = new NavigationPage(new WelcomePage());
+            if (Password != null && Password.Length > 0){
+                Application.Current.Properties["Name"] = Email;
+                _page.Navigation.PopModalAsync();
+            } 
+            else _page.DisplayAlert("Alerte", "Mot de passe vide", "OK");
         } 
 
         public string Email { 

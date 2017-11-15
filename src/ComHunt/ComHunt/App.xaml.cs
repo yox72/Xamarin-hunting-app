@@ -5,11 +5,15 @@ namespace ComHunt
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LoginPage(this));
+            Properties["IsLogged"] = false;
+            Properties["Name"] = "";
+            Properties["NumeroChasse"] = 0;
+            MainPage = new NavigationPage(new WelcomePage());
         }
 
         protected override void OnStart()

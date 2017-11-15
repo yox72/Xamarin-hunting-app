@@ -8,10 +8,17 @@ namespace ComHunt.Views
 {
     public partial class LoginPage : ContentPage
     {
+        private App app;
+
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginVM(this.Navigation) { /*Constructeur*/};
+            this.BindingContext = new LoginVM(this) { /*Constructeur*/};
+        }
+
+        public LoginPage(App app)
+        {
+            this.app = app;
         }
     }
 }

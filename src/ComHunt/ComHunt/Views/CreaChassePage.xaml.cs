@@ -5,12 +5,12 @@ using Xamarin.Forms;
 
 namespace ComHunt.Views
 {
-    public partial class WelcomePage : ContentPage
+    public partial class CreaChassePage : ContentPage
     {
-        public WelcomePage()
+        public CreaChassePage()
         {
             InitializeComponent();
-            BindingContext = new WelcomePageVM(this);
+            BindingContext = new CreaChasseVM(this);
         }
     }
 }
