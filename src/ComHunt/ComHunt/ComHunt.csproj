@@ -41,6 +41,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\JoinChassePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -60,6 +64,10 @@
       <DependentUpon>CreaChassePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CreaChasseVM.cs" />
+    <Compile Include="Views\JoinChassePage.xaml.cs">
+      <DependentUpon>JoinChassePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\JoinChasseVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

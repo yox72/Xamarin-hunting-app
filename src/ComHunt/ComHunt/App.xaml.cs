@@ -9,10 +9,12 @@ namespace ComHunt
         public App()
         {
             InitializeComponent();
-
+            //Variables partagées 
             Properties["IsLogged"] = false;
             Properties["Name"] = "";
             Properties["NumeroChasse"] = 0;
+            Properties["NumeroJoinChasse"] = 0;
+            //Variables partagées
             MainPage = new NavigationPage(new WelcomePage());
         }
 

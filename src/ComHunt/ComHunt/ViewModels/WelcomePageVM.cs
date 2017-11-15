@@ -16,10 +16,12 @@ namespace ComHunt.ViewModels
             _page = page;
             init();
             creaChasseCommand = new Command(CreaChasse);
-            //joinChasseCommand = new Command(JoinChasse);
+            joinChasseCommand = new Command(JoinChasse);
+            deconnexionCommand = new Command(Deconnexion);
         }
         public ICommand creaChasseCommand { get; set; }
-        //public ICommand joinChasseCommand { get; set; }
+        public ICommand joinChasseCommand { get; set; }
+        public ICommand deconnexionCommand { get; set; }
 
         public void init()
         {
@@ -34,6 +36,23 @@ namespace ComHunt.ViewModels
         public void CreaChasse(){
             //Créer numéro random de la chasse
             _page.Navigation.PushAsync(new CreaChassePage());//Ouvirir vue CreaChasse
+        }
+
+        public void JoinChasse()
+        {
+            _page.Navigation.PushAsync(new JoinChassePage());//Ouvirir vue JoinChasse
+        }
+
+        async void Deconnexion()
+        {
+            var ans = await _page.DisplayAlert("Deconnexion", "Voulez vous vous deconnecter ?", "Oui", "Non");
+            //BUG N'ATTEND PAS QUE L'UTILISATEUR AI CLIQUÉ SUR OUI OU NON
+            if (ans == true)
+            {
+                Application.Current.Properties["IsLogged"] = false;
+                init();
+            }
+            else {/*do nothing*/}
         }
     }
 }
