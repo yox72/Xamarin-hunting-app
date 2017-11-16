@@ -3,7 +3,6 @@ using ComHunt.Models;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
-using ComHunt.Views;
 
 namespace ComHunt.ViewModels
 {
@@ -11,6 +10,8 @@ namespace ComHunt.ViewModels
     {
         private User _user;
         private Page _page;
+
+        public Action<string> CallBack;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,15 +22,12 @@ namespace ComHunt.ViewModels
             loginCommand = new Command(Login);
         }
 
+
         public ICommand loginCommand { get; set; }
         public void Login()
         {
-            //Email = "Ca marche pas";//on partira
-
-            //nav.PushAsync(new WelcomePage());
-            //App.Current.MainPage = new NavigationPage(new WelcomePage());
             if (Password != null && Password.Length > 0){
-                Application.Current.Properties["Name"] = Email;
+                CallBack(Email);
                 _page.Navigation.PopModalAsync();
             } 
             else _page.DisplayAlert("Alerte", "Mot de passe vide", "OK");
