@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.JoinChassePage">
 	<ContentPage.Content>
-        <Label Text="Entrer le numéro de la chasse : "/>
-        <Entry Text ="{Binding NumeroJoinChasse}"/>
-        <Button Text="Entrer" Command="{Binding entrerCommand}"/>
+        <StackLayout>
+            <Label Text="Entrer le numéro de la chasse : "/>
+            <Entry Text ="{Binding NumeroJoinChasse}"/>
+            <Button Text="Entrer" Command="{Binding entrerCommand}"/>
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

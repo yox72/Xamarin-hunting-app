@@ -7,18 +7,13 @@ namespace ComHunt.ViewModels
 {
     public class JoinChasseVM : ContentView
     {
-        private JoinChassePage joinChassePage;
+        private Page _page;
 
-        public JoinChasseVM()
+        public JoinChasseVM(Page page)
         {
+            _page = page;
             entrerCommand = new Command(Entrer);
         }
-
-        public JoinChasseVM(JoinChassePage joinChassePage)
-        {
-            this.joinChassePage = joinChassePage;
-        }
-
         public ICommand entrerCommand { get; set; }
 
         public void Entrer(){
