@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using ComHunt.Services;
 using ComHunt.Views;
 using Xamarin.Forms;
 
@@ -35,18 +36,18 @@ namespace ComHunt.ViewModels
         void init()
         {
 
-            if (Application.Current.Properties["IsLogged"] != null && !((bool)Application.Current.Properties["IsLogged"]))
+            if (!DependencyService.Get<IUserService>().IsLogged())
             {
                 var loginPage = new LoginPage();
                 var loginVM = (LoginVM) loginPage.BindingContext;
                 loginVM.CallBack = OnNewUserCallback;
 
                 _page.Navigation.PushModalAsync(loginPage);
-                Application.Current.Properties["IsLogged"] = true;
             }
         }
 
         public void OnNewUserCallback(string name){
+            DependencyService.Get<IUserService>().Connect(name);
             Name = name;
         }
 
@@ -66,7 +67,7 @@ namespace ComHunt.ViewModels
 
             if (ans)
             {
-                Application.Current.Properties["IsLogged"] = false;
+                DependencyService.Get<IUserService>().LogOut();
                 init();
             }
         }

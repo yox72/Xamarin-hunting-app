@@ -1,8 +1,8 @@
 ﻿using System;
-using ComHunt.Models;
 using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using ComHunt.Services;
 
 namespace ComHunt.ViewModels
 {
@@ -22,8 +22,8 @@ namespace ComHunt.ViewModels
         public LoginVM(Page page)
         {
             _page = page;
-            Email = "Yohann";
-            Password = "";
+            Email = DependencyService.Get<IUserService>().getName();
+            Password = DependencyService.Get<IUserService>().getPassword();
             loginCommand = new Command(Login);
         }
 

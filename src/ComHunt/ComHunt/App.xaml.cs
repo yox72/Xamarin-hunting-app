@@ -10,8 +10,6 @@ namespace ComHunt
         {
             InitializeComponent();
             //Variables partagées 
-            Properties["IsLogged"] = false;
-            Properties["Name"] = "";
             Properties["NumeroChasse"] = 0;
             Properties["NumeroJoinChasse"] = 0;
             //Variables partagées
