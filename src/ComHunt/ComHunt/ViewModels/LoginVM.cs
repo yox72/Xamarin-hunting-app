@@ -8,22 +8,25 @@ namespace ComHunt.ViewModels
 {
     public class LoginVM : INotifyPropertyChanged
     {
-        private User _user;
         private Page _page;
+
+        public string Email { get; set; }
+        public string Password { get; set; }    //Actualise tout seul grace à Fody
+
+        public ICommand loginCommand { get; set; }
 
         public Action<string> CallBack;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged; //Event update
 
         public LoginVM(Page page)
         {
             _page = page;
-            _user = new User() { Email = "Yohann", Password = "" };
+            Email = "Yohann";
+            Password = "";
             loginCommand = new Command(Login);
         }
 
-
-        public ICommand loginCommand { get; set; }
         public void Login()
         {
             if (Password != null && Password.Length > 0){
@@ -32,44 +35,5 @@ namespace ComHunt.ViewModels
             } 
             else _page.DisplayAlert("Alerte", "Mot de passe vide", "OK");
         } 
-
-        public string Email { 
-            get 
-            { 
-                return _user.Email;
-            } 
-
-            set 
-            {
-                if (value != _user.Email){
-                    _user.Email = value;
-
-                    if (PropertyChanged != null){
-                        PropertyChanged(this, new PropertyChangedEventArgs("Email")); //update
-                    }
-                }
-            }
-        }
-
-        public string Password
-        {
-            get
-            {
-                return _user.Password;
-            }
-
-            set
-            {
-                if (value != _user.Password)
-                {
-                    _user.Password = value;
-
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("Password")); //update
-                    }
-                }
-            }
-        }
     }
 }

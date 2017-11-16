@@ -7,7 +7,6 @@ namespace ComHunt.ViewModels
     public class CreaChasseVM : ContentView
     {
         private Page _page;
-        //public string Email => (string)Application.Current.Properties["NumeroChasse"];
 
         public CreaChasseVM(Page page)
         {

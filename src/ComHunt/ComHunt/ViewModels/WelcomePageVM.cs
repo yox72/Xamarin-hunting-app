@@ -12,7 +12,11 @@ namespace ComHunt.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        //public string Email => (string)Application.Current.Properties["Name"];
+        public string Name { get; set; }
+
+        public ICommand creaChasseCommand { get; set; }
+        public ICommand joinChasseCommand { get; set; }
+        public ICommand deconnexionCommand { get; set; }
 
         public WelcomePageVM(Page page)
         {
@@ -27,10 +31,6 @@ namespace ComHunt.ViewModels
             joinChasseCommand = new Command(JoinChasse);
             deconnexionCommand = new Command(Deconnexion);
         }
-
-        public ICommand creaChasseCommand { get; set; }
-        public ICommand joinChasseCommand { get; set; }
-        public ICommand deconnexionCommand { get; set; }
 
         void init()
         {
@@ -49,21 +49,6 @@ namespace ComHunt.ViewModels
         public void OnNewUserCallback(string name){
             Name = name;
         }
-
-        public string Name
-        {
-            get
-            {
-                return (string)Application.Current.Properties["Name"];
-            }
-
-            set
-            {
-                Application.Current.Properties["Name"] = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Name")); //update
-            }
-        }
-
 
         public void CreaChasse(){
             //Créer numéro random de la chasse
