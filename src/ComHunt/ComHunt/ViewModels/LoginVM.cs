@@ -29,11 +29,11 @@ namespace ComHunt.ViewModels
 
         public void Login()
         {
-            if (Password != null && Password.Length > 0){
+            if (Password != null && Password.Length > 0 && Email != null && Email.Length > 0){
                 CallBack(Email);
                 _page.Navigation.PopModalAsync();
             } 
-            else _page.DisplayAlert("Alerte", "Mot de passe vide", "OK");
+            else _page.DisplayAlert("Alerte", "Nom et/ou Mot de passe vide", "OK");
         } 
     }
 }

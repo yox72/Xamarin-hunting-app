@@ -6,12 +6,14 @@ namespace ComHunt.Services
 {
     public class UserService : IUserService
     {
-        static string default_name = "Yohann";
+        static string default_name = "";
         static string default_password = "";
 
         string name { get; set; }
         string password { get; set; }
         bool isLogged { get; set; }
+        int numberCurrentHunt { get; set; }
+        int positionGPS { get; set; } //set peut être useless
 
         public UserService()
         {
@@ -54,6 +56,27 @@ namespace ComHunt.Services
             this.name = default_name;
             this.password = default_password;
             isLogged = false;
+        }
+
+        //Numero Current Chasse
+        public int GetNumberCurrentHunt(){
+            return numberCurrentHunt;
+        }
+
+        public void SetNumberCurrentHunt(int number)
+        {
+            numberCurrentHunt=number;
+        }
+
+        //Position GPS
+        public int GetPositionGPS()
+        {
+            return positionGPS;
+        }
+
+        public void SetPositionGPS(int number) //peut être useless !!!
+        {
+            positionGPS = number;
         }
     }
 }
