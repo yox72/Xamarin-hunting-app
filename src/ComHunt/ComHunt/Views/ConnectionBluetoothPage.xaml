@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.ConnectionBluetoothPage">
+	<ContentPage.Content>
+        <StackLayout>
+            <Button Text="Connexion" Command="{Binding creaChasseCommand}"/>
+            <Button Text="Déconnexion" Command="{Binding creaChasseCommand}"/>
+            <Button Text="Allumer LED 1" Command="{Binding creaChasseCommand}"/>
+            <Button Text="Allumer LED 2" Command="{Binding creaChasseCommand}"/>
+            <Button Text="Allumer LED 3" Command="{Binding creaChasseCommand}"/>
+            <Button Text="Eteindre les LEDs" Command="{Binding creaChasseCommand}"/>
+        </StackLayout>
+
+	</ContentPage.Content>
+</ContentPage>

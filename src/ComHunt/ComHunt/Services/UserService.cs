@@ -78,5 +78,7 @@ namespace ComHunt.Services
         {
             positionGPS = number;
         }
+
+        //Une chasse possède : Un nom, Un nombre de chasseurs, Un nombre de chef de ligne.
     }
 }
