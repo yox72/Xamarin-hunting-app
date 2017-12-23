@@ -49,6 +49,10 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\TestBDPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -79,12 +83,20 @@
       <DependentUpon>ConnectionBluetoothPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ConnectionBluetoothVM.cs" />
+    <Compile Include="Database\BDFire.cs" />
+    <Compile Include="Models\Vue.cs" />
+    <Compile Include="Models\Tuer.cs" />
+    <Compile Include="Views\TestBDPage.xaml.cs">
+      <DependentUpon>TestBDPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\TestBDVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Views\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Services\" />
+    <Folder Include="Database\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GoogleService-Info.plist" />
@@ -138,5 +150,5 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.121934\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
-  <Import Project="..\packages\Fody.2.3.2\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.2.3.2\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
+  <Import Project="..\packages\Fody.2.3.3\build\portable-net+sl+win+wpa+wp\Fody.targets" Condition="Exists('..\packages\Fody.2.3.3\build\portable-net+sl+win+wpa+wp\Fody.targets')" />
 </Project>
