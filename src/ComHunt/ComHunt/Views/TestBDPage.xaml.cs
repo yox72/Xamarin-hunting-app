@@ -19,9 +19,7 @@ namespace ComHunt.Views
             var bd = new BDFire();
             var list = await bd.getList();
 
-            if(list==null){
-                 
-            }
+            if(list==null){}
         }
     }
 }

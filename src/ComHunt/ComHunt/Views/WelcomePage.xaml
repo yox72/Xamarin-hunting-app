@@ -7,6 +7,7 @@
             <Button Text="Rejoinde chasse" Command="{Binding joinChasseCommand}"/>
             <Button Text="Carte"/>
             <Button Text="Bluetooth" Command="{Binding connectionBluetoothCommand}"/>
+            <Button Text="Base de donnée" Command="{Binding testBDCommand}"/>
             <Button Text="Déconnexion" Command="{Binding deconnexionCommand}"/>
         </StackLayout>
     </ContentPage.Content>
