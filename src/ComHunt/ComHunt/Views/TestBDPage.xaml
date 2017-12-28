@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.TestBDPage">
-	<ContentPage.Content>
+    <ContentPage.Content>
         <StackLayout>
-            <Button Text="Vue sanglier" Command="{Binding vueSanglierCommand}"/>
-            <Button Text="Vue Chevreuil" Command="{Binding vueChevreuilCommand}"/>
-            <Button Text="Vue Renard" Command="{Binding vueRenardCommand"/>
-
+            <Button Text="Renard Vue" Command ="{Binding renardVueCommand}"/>
             <Button Text="Get !" Clicked = "Handle_Clicked"/>
-            <ListView ItemsSource="{Binding .}">
+            <ListView ItemsSource="{Binding .}" x:Name="_lst">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Sanglier}" Detail="{Binding Renard}"/>
+                        <TextCell Text="Renard" Detail="{Binding Renard}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
 
-	</ContentPage.Content>
+    </ContentPage.Content>
 </ContentPage>

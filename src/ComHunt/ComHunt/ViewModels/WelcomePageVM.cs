@@ -4,6 +4,7 @@ using System.Windows.Input;
 using ComHunt.Services;
 using ComHunt.Views;
 using Xamarin.Forms;
+using Plugin.Connectivity;  
 
 namespace ComHunt.ViewModels
 {
@@ -40,14 +41,14 @@ namespace ComHunt.ViewModels
         void init()
         {
 
-            if (!DependencyService.Get<IUserService>().IsLogged())
+            /*if (!DependencyService.Get<IUserService>().IsLogged())
             {
                 var loginPage = new LoginPage();
                 var loginVM = (LoginVM) loginPage.BindingContext;
                 loginVM.CallBack = OnNewUserCallback;
 
                 _page.Navigation.PushModalAsync(loginPage);
-            }
+            }*/
         }
 
         public void OnNewUserCallback(string name){
@@ -70,9 +71,10 @@ namespace ComHunt.ViewModels
             _page.Navigation.PushAsync(new ConnectionBluetoothPage());//Ouvirir vue ConnectionBluetooth
         }
 
+     
         public void TestBD()
         {
-            _page.Navigation.PushAsync(new TestBDPage());//Ouvrir vue TestBD
+                _page.Navigation.PushAsync(new TestBDPage());//Ouvrir vue TestBD
         }
 
         async void Deconnexion()
