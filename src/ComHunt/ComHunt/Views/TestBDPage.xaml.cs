@@ -14,6 +14,7 @@ namespace ComHunt.Views
         public TestBDPage()
         {
             InitializeComponent();
+            BindingContext = new TestBDVM(this);
             _lst.BindingContext = list;
         }
 
