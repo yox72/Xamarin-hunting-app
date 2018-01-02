@@ -12,7 +12,7 @@ namespace ComHunt.ViewModels
         private Page _page;
         private IAdapter adapter;
         private IBluetoothLE ble;
-        private object deviceList;
+        private ListView deviceList;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,21 +24,15 @@ namespace ComHunt.ViewModels
         public ICommand ledShutDownCommand { get; set; }
 
 
-        /*public ConnectionBluetoothVM(Page page, IBluetoothLE ble, IAdapter adapter)
+        public ConnectionBluetoothVM(Page page, IBluetoothLE ble, IAdapter adapter)
         {
             _page = page;
             this.ble = ble;
             this.adapter = adapter;
             init();
             initCommands();
-        }*/
-
-        public ConnectionBluetoothVM(Page page)
-        {
-            _page = page;
-            init();
-            initCommands();
         }
+
 
         void initCommands(){
             connectionCommand = new Command(Connection);
@@ -49,18 +43,18 @@ namespace ComHunt.ViewModels
             ledShutDownCommand = new Command(LedShutDown);
         }
 
-        void init(){
-            
+        private async void init(){
+            //adapter.DeviceDiscovered += (s, a) => deviceList.Add(a.Device);
+            //await adapter.StartScanningForDevicesAsync();
         }
 
-        /*public async System.Threading.Tasks.Task ConnectionAsync()
-        {
-            adapter.DeviceDiscovered += (s, a) => deviceList.Add(a.Device);
-            await adapter.StartScanningForDevicesAsync();
-        }*/
-        public void Connection(){}
+        public async void Connection(){
+            //await adapter.ConnectToDeviceAsync("device");    //Nom de la device
+        }
         public void Deconnection(){}
-        public void Led1(){}
+        public void Led1(){
+            
+        }
         public void Led2(){}
         public void Led3(){}
         public void LedShutDown(){}

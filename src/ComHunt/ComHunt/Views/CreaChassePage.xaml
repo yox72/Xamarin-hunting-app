@@ -3,7 +3,10 @@
 	<ContentPage.Content>
         <StackLayout>
             <Label Text="Chasse"/>
-            <Label Text="{Binding NumeroChasse, StringFormat='Chasse numéro {0}'}"/>
+            <Entry Text="{Binding NomChasse}" Placeholder="Nommez votre chasse"/>
+            <Entry Text="{Binding NbChefs}" Placeholder="Nombre de chefs de lignes"/>
+            <Entry Text="{Binding NbChasseurs}" Placeholder="Nombre de tireurs"/>
+            <Button Text="Valider" Command="{Binding creationChasseCommand}"/> 
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

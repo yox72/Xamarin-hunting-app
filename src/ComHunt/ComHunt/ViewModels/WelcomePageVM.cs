@@ -74,7 +74,7 @@ namespace ComHunt.ViewModels
      
         public void TestBD()
         {
-                _page.Navigation.PushAsync(new TestBDPage());//Ouvrir vue TestBD
+                _page.Navigation.PushAsync(new TestBDPage(""));//Ouvrir vue TestBD
         }
 
         async void Deconnexion()

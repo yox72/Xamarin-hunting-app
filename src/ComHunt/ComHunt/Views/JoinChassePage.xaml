@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.JoinChassePage">
 	<ContentPage.Content>
         <StackLayout>
-            <Label Text="Entrer le numéro de la chasse : "/>
-            <Entry Text ="{Binding NumeroJoinChasse}"/>
+            <Label Text="Entrer le nom de la chasse : "/>
+            <Entry Text ="{Binding NumeroJoinChasse}" Placeholder="Nom de chasse"/>
             <Button Text="Entrer" Command="{Binding entrerCommand}"/>
         </StackLayout>
 	</ContentPage.Content>

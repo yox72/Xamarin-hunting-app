@@ -11,10 +11,12 @@ namespace ComHunt.Views
     public partial class TestBDPage : ContentPage
     {
         ObservableCollection<Vue> list = new ObservableCollection<Vue>();
-        public TestBDPage()
+        private string numeroJoinChasse;
+
+        public TestBDPage(string NumberJoinChasse)
         {
             InitializeComponent();
-            BindingContext = new TestBDVM(this);
+            BindingContext = new TestBDVM(this, NumberJoinChasse);
             _lst.BindingContext = list;
         }
 
