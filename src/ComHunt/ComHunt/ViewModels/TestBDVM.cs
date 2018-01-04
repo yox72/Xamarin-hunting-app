@@ -15,6 +15,7 @@ namespace ComHunt.ViewModels
     {
         private Page _page;
         public string NumberChasse;
+        public string etatChasse;
 
         public ICommand sanglierVueCommand { get; set; }
         public ICommand chevreuilVueCommand { get; set; }
@@ -29,20 +30,14 @@ namespace ComHunt.ViewModels
             _page = page;
             initCommands();
             NumberChasse = NumberJoinChasse;
-            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            if (firebase
-                .Child(NumberChasse)
-                .Child("EtatDeChasse").ToString().Equals("Arret")){
-                _page.Navigation.PushModalAsync(new PausePage());
-            }
+            getEtat();
+            init();
+        }
 
-            /*if (!DependencyService.Get<IUserService>().IsLogged())
+        public void init(){
+            /*if (etatChasse == "Arret")
             {
-                var loginPage = new LoginPage();
-                var loginVM = (LoginVM)loginPage.BindingContext;
-                loginVM.CallBack = OnNewUserCallback;
-
-                _page.Navigation.PushModalAsync(loginPage);
+                _page.Navigation.PushModalAsync(new PausePage());
             }*/
         }
 
@@ -54,6 +49,28 @@ namespace ComHunt.ViewModels
             renardTuerCommand = new Command(TuerRenard);
             sanglierTuerCommand = new Command(TuerSanglier);
             //affichageCommand = new Command(Affichage);
+        }
+
+        public async void getEtat()
+        {
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var Bonjour = (await firebase
+                           .Child(NumberChasse)
+                           .Child("EtatDeChasse")
+                           .OrderByKey()
+                           //.LimitToFirst(2)
+                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                           .OnceAsync<Etat>())
+                           .Select(item =>
+                                   new Etat
+                                   {
+                                       etat = item.Object.etat
+                                   }
+                               ).ToList();
+            if (Bonjour[0].etat == "Arret")
+            {
+                await _page.Navigation.PushModalAsync(new PausePage(NumberChasse));
+            }
         }
 
         public async void VueSanglier(){

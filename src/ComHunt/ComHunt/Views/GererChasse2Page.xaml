@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.GererChasse2Page">
+	<ContentView.Content>
+        <StackLayout>
+            <Label Text="Chasse"/>
+            <Entry Text="{Binding NomChasse}" Placeholder="Nommez votre chasse"/>
+            <Entry Text="{Binding NbChefs}" Placeholder="Nombre de chefs de lignes"/>
+            <Entry Text="{Binding NbChasseurs}" Placeholder="Nombre de tireurs"/>
+            <Button Text="Valider" Command="{Binding creationChasseCommand}"/> 
+        </StackLayout>
+	</ContentView.Content>
+</ContentView>

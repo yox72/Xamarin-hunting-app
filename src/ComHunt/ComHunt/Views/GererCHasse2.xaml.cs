@@ -5,12 +5,12 @@ using Xamarin.Forms;
 
 namespace ComHunt.Views
 {
-    public partial class PausePage : ContentPage
+    public partial class GererCHasse2 : ContentPage
     {
-        public PausePage(string NumberChasse)
+        public GererCHasse2()
         {
             InitializeComponent();
-            this.BindingContext = new PauseVM(this, NumberChasse);
+            BindingContext = new WelcomePageVM(this);
         }
     }
 }

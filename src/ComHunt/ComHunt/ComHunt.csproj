@@ -105,6 +105,10 @@
     <Compile Include="Views\PausePage.xaml.cs">
       <DependentUpon>PausePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Etat.cs" />
+    <Compile Include="Models\Chasse.cs" />
+    <Compile Include="Models\Name.cs" />
+    <Compile Include="ViewModels\PauseVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

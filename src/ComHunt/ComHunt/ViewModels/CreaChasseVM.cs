@@ -39,55 +39,72 @@ namespace ComHunt.ViewModels
         }
 
         public async void CreationChasse(){
-            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            await firebase
-                .Child(NomChasse)
-                .Child("EtatDeChasse")
-                .PutAsync("Arret");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Sanglier")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Renard")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Chevreuil")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Sanglier")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Renard")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
-            await firebase
-                .Child(NomChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Chevreuil")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                .PutAsync("0");
+            
+            if (NomChasse != null && NomChasse.Length > 0)
+            {
+                var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+                //Creation de la liste des noms de chasse
+                await firebase
+                    .Child(NomChasse)
+                    .Child("NameChasse")
+                    .Child("Name")
+                    .Child("name")
+                    .PutAsync(NomChasse);
+                //Creation de l'état de la chasse
+                await firebase
+                    .Child(NomChasse)
+                    .Child("EtatDeChasse")
+                    .Child("Etat")
+                    .Child("etat")
+                    .PutAsync("Arret");
+                //Creation des vues
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseVue")
+                    .Child("Vue")
+                    .Child("Sanglier")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseVue")
+                    .Child("Vue")
+                    .Child("Renard")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseVue")
+                    .Child("Vue")
+                    .Child("Chevreuil")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
+                //Creation des tuer
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseTuer")
+                    .Child("Tuer")
+                    .Child("Sanglier")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseTuer")
+                    .Child("Tuer")
+                    .Child("Renard")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
+                await firebase
+                    .Child(NomChasse)
+                    .Child("ChasseTuer")
+                    .Child("Tuer")
+                    .Child("Chevreuil")
+                    //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                    .PutAsync("0");
 
-            _page.Navigation.PushAsync(new GererChassePage(NomChasse));//Ouvirir vue CreaChasse
+                await _page.Navigation.PushAsync(new GererChassePage(NomChasse));//Ouvirir vue GererChasse
+            }
+            else await _page.DisplayAlert("Alerte", "Nom vide", "OK");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace ComHunt.Views
     public partial class TestBDPage : ContentPage
     {
         ObservableCollection<Vue> list = new ObservableCollection<Vue>();
-        private string numeroJoinChasse;
+        //private string numeroJoinChasse;
 
         public TestBDPage(string NumberJoinChasse)
         {

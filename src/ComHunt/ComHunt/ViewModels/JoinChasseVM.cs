@@ -15,38 +15,50 @@ namespace ComHunt.ViewModels
         private Page _page;
         public string NumeroJoinChasse { get; set; }
 
+        public ICommand entrerCommand { get; set; }
+
         public JoinChasseVM(Page page)
         {
             _page = page;
+            init();
+            initCommand();
+        }
+
+        void init(){
             NumeroJoinChasse = DependencyService.Get<IUserService>().getName();
+        }
+
+        void initCommand(){
             entrerCommand = new Command(Entrer);
         }
-        public ICommand entrerCommand { get; set; }
+
 
         public async void Entrer(){
-            /*var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-
-            //Test Pour savoir si la chasse existe bien
-            string LaBDD = await firebase.ToString();
-
-            var list = (await firebase
-                        .Child("Chasse")
-                        .Child("ChasseVue")
-                        //.Child("Vue")
-                        .OrderByKey()
-                        //.LimitToFirst(2)
-                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                        .OnceAsync<Vue>())
-                        .Select(item =>
-                                new Vue
-                                {
-                                    Chevreuil = item.Object.Chevreuil,
-                                    Renard = item.Object.Renard,
-                                    Sanglier = item.Object.Sanglier
-                                }
-
-                       ).ToList();*/
-            _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var Bonjour = (await firebase
+                           .Child(NumeroJoinChasse)
+                           .Child("NameChasse")
+                           .OrderByKey()
+                           //.LimitToFirst(2)
+                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                           .OnceAsync<Chasse>())
+                           .Select(item =>
+                                   new Chasse
+                                   {
+                                        name = item.Object.name
+                                   }
+                               ).ToList();
+            try
+            {
+                if (Bonjour[0].name.Contains(NumeroJoinChasse))
+                {
+                    await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
+                }
+            }
+            catch (Exception e)
+            { 
+                await _page.DisplayAlert("Alerte", "Nom de chasse incorrect", "OK");//Afficher erreur }     
+            }
         }
     }
 }

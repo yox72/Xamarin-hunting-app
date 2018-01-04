@@ -4,7 +4,7 @@
         <StackLayout>
             <Label Text="{Binding Name, StringFormat='Bonjour {0}'}"/>
             <Button Text="Créer Chasse" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Rejoinde chasse" Command="{Binding joinChasseCommand}"/>
+            <Button Text="Rejoindre chasse" Command="{Binding joinChasseCommand}"/>
             <Button Text="Carte"/>
             <Button Text="Bluetooth" Command="{Binding connectionBluetoothCommand}"/>
             <Button Text="Base de donnée" Command="{Binding testBDCommand}"/>
