@@ -14,6 +14,7 @@ namespace ComHunt.ViewModels
     {
         private Page _page;
         public string NumeroJoinChasse { get; set; }
+        public bool TireurChef { get; set; }
 
         public ICommand entrerCommand { get; set; }
 
@@ -25,7 +26,7 @@ namespace ComHunt.ViewModels
         }
 
         void init(){
-            NumeroJoinChasse = DependencyService.Get<IUserService>().getName();
+            //NumeroJoinChasse = DependencyService.Get<IUserService>().getName();
         }
 
         void initCommand(){
@@ -35,6 +36,7 @@ namespace ComHunt.ViewModels
 
         public async void Entrer(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            bool toto = TireurChef;
             var Bonjour = (await firebase
                            .Child(NumeroJoinChasse)
                            .Child("NameChasse")

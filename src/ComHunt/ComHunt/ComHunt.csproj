@@ -61,6 +61,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WaitUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -109,6 +117,14 @@
     <Compile Include="Models\Chasse.cs" />
     <Compile Include="Models\Name.cs" />
     <Compile Include="ViewModels\PauseVM.cs" />
+    <Compile Include="ViewModels\NewUserVM.cs" />
+    <Compile Include="Views\NewUserPage.xaml.cs">
+      <DependentUpon>NewUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WaitUserPage.xaml.cs">
+      <DependentUpon>WaitUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\WaitUserVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

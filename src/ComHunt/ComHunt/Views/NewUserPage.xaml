@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.NewUserPage">
+	<ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
+            <Label Text="Login" FontSize = "30"/>
+            <Entry Text ="{Binding Email}" Placeholder="Adresse Email" />
+            <Entry Text ="{Binding Password}" IsPassword="true" Placeholder="Password"/>
+            <Button Text="Login" Command="{Binding loginCommand}"/>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

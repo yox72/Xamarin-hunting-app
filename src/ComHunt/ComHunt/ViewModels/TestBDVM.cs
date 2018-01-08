@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ComHunt.Models;
+using ComHunt.Services;
 using ComHunt.Views;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
@@ -14,6 +15,7 @@ namespace ComHunt.ViewModels
     public class TestBDVM : ContentView
     {
         private Page _page;
+
         public string NumberChasse;
         public string etatChasse;
 
@@ -60,9 +62,9 @@ namespace ComHunt.ViewModels
                            .OrderByKey()
                            //.LimitToFirst(2)
                            //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                           .OnceAsync<Etat>())
+                           .OnceAsync<Chasse>())
                            .Select(item =>
-                                   new Etat
+                                   new Chasse
                                    {
                                        etat = item.Object.etat
                                    }
@@ -157,7 +159,7 @@ namespace ComHunt.ViewModels
 
                        ).ToList();
             int number = int.Parse(list[0].Chevreuil) + 1;
-            number.ToString();
+            string nombre = number.ToString();
             await firebase
                 .Child(NumberChasse)
                 .Child("ChasseVue")

@@ -2,13 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.WelcomePage">
 	<ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding Name, StringFormat='Bonjour {0}'}"/>
-            <Button Text="Créer Chasse" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Rejoindre chasse" Command="{Binding joinChasseCommand}"/>
-            <Button Text="Carte"/>
-            <Button Text="Bluetooth" Command="{Binding connectionBluetoothCommand}"/>
-            <Button Text="Base de donnée" Command="{Binding testBDCommand}"/>
-            <Button Text="Déconnexion" Command="{Binding deconnexionCommand}"/>
+            <Label Text="{Binding Name, StringFormat='Bonjour {0}'}" FontSize="30"/>
+            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
+                <Button Text="Créer Chasse" Command="{Binding creaChasseCommand}"/>
+                <Button Text="Rejoindre chasse" Command="{Binding joinChasseCommand}"/>
+                <Button Text="Carte"/>
+                <Button Text="Bluetooth" Command="{Binding connectionBluetoothCommand}"/>
+                <Button Text="Base de donnée" Command="{Binding testBDCommand}"/>
+                <Button Text="Déconnexion" Command="{Binding deconnexionCommand}"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

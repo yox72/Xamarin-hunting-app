@@ -3,9 +3,19 @@
 	<ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
             <Label Text="Login" FontSize = "30"/>
-            <Entry Text ="{Binding Email}" Placeholder="Username" />
+            <Entry Text ="{Binding Email}" Placeholder="Adresse Email" />
             <Entry Text ="{Binding Password}" IsPassword="true" Placeholder="Password"/>
             <Button Text="Login" Command="{Binding loginCommand}"/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Label Text=""/>
+            <Button Text="Nouveau ?" Command="{Binding newUserCommand}"/>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

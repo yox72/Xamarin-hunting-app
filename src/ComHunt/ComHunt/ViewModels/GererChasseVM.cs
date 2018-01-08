@@ -32,6 +32,8 @@ namespace ComHunt.ViewModels
             await firebase
                 .Child(NumberChasse)
                 .Child("EtatDeChasse")
+                .Child("Etat")
+                .Child("etat")
                 .PutAsync("Actif");
         }
 
@@ -41,6 +43,8 @@ namespace ComHunt.ViewModels
             await firebase
                 .Child(NumberChasse)
                 .Child("EtatDeChasse")
+                .Child("Etat")
+                .Child("etat")
                 .PutAsync("Arret");
         }
     }

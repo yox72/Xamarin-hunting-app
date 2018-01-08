@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.WaitUserPage">
+	<ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
+            <Label Text="En attente des chasseurs" HorizontalOptions="Center"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding nombreChasseurActifs, StringFormat='{0}'}"/>
+                <Label Text="/"/>
+                <Label Text="{Binding nombreChasseur, StringFormat='{0}'}"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding nombreChefsActifs, StringFormat='{0}'}"/>
+                <Label Text="/"/>
+                <Label Text="{Binding nombreChefs, StringFormat='{0}'}"/>
+            </StackLayout>
+            <Button Text="Refresh" Command="{Binding refreshCommand}"/>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

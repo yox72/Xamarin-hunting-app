@@ -3,6 +3,8 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using ComHunt.Services;
+using Firebase.Xamarin.Auth;
+using ComHunt.Views;
 
 namespace ComHunt.ViewModels
 {
@@ -14,6 +16,7 @@ namespace ComHunt.ViewModels
         public string Password { get; set; }    //Actualise tout seul grace à Fody
 
         public ICommand loginCommand { get; set; }
+        public ICommand newUserCommand { get; set; }
 
         public Action<string> CallBack;
 
@@ -25,15 +28,32 @@ namespace ComHunt.ViewModels
             Email = DependencyService.Get<IUserService>().getName();
             Password = DependencyService.Get<IUserService>().getPassword();
             loginCommand = new Command(Login);
+            newUserCommand = new Command(NewUser);
         }
 
-        public void Login()
+        public async void Login()
         {
-            if (Password != null && Password.Length > 0 && Email != null && Email.Length > 0){
-                CallBack(Email);
-                _page.Navigation.PopModalAsync();
-            } 
-            else _page.DisplayAlert("Alerte", "Nom et/ou Mot de passe vide", "OK");
+            try{
+                if (Password != null && Password.Length > 0 && Email != null && Email.Length > 0)
+                {
+                    CallBack(Email);
+                    var authProvider = new FirebaseAuthProvider(new FirebaseConfig("AIzaSyBMmB8Ra_vGbeybLtcNOq56q6udnjCFy10"));
+                    var auth = await authProvider.SignInWithEmailAndPasswordAsync(Email, Password);
+                    _page.Navigation.PopModalAsync();
+                }
+                else _page.DisplayAlert("Alerte", "Nom et/ou Mot de passe vide", "OK");
+            }
+            catch (Exception e)
+            {
+                await _page.DisplayAlert("Alerte", "Adresse mail/Mot de passe incorrect(e)", "OK");//Afficher erreur }     
+            }
+
         } 
+
+        public void NewUser(){
+            _page.Navigation.PopModalAsync();
+            var pageuser = new NewUserPage();
+            _page.Navigation.PushModalAsync(pageuser);
+        }
     }
 }
