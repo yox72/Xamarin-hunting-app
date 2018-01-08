@@ -128,8 +128,7 @@ namespace ComHunt.ViewModels
                       .Child("NombreChefs")
                       .Child("nombreChefsActifs")
                         .PutAsync("0");
-
-                    //await _page.Navigation.PushAsync(new GererChassePage(NomChasse));//Ouvirir vue GererChasse
+                    
                     await _page.Navigation.PushAsync(new WaitUserPage(NomChasse));//Ouvirir vue GererChasse
                 }
                 else await _page.DisplayAlert("Alerte", "Nom vide", "OK");

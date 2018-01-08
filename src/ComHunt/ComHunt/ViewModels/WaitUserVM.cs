@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using ComHunt.Models;
+using ComHunt.Views;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
 using Xamarin.Forms;
@@ -52,6 +53,10 @@ namespace ComHunt.ViewModels
             nombreChasseurActifs = list[0].nombreChasseursActifs;
             nombreChefs = list[1].nombreChefs;
             nombreChefsActifs = list[1].nombreChefsActifs;
+
+            if (nombreChefs == nombreChefsActifs && nombreChasseurs == nombreChasseurActifs){
+                await _page.Navigation.PushAsync(new GererChassePage(NumberChasse));//Ouvirir vue GererChasse
+            }
         }
     }
 }

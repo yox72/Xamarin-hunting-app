@@ -54,6 +54,27 @@ namespace ComHunt.ViewModels
             {
                 if (Bonjour[0].name.Contains(NumeroJoinChasse))
                 {
+                    //Lecture du nombre de chasseurs actifs
+                    var list = (await firebase
+                           .Child(NumeroJoinChasse)
+                           .Child("Nombre")
+                           .OrderByKey()
+                           //.LimitToFirst(2)
+                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                           .OnceAsync<Chasse>())
+                           .Select(item =>
+                                   new Chasse
+                                   {
+                                    nombreChasseursActifs = item.Object.nombreChasseursActifs
+                                   }
+                               ).ToList();
+                    int newnbChasseursActifs = int.Parse(list[0].nombreChasseursActifs) + 1;
+                    await firebase  //Nb chasseurs actifs
+                        .Child(NumeroJoinChasse)
+                      .Child("Nombre")
+                      .Child("NombreChasseurs")
+                      .Child("nombreChasseursActifs")
+                        .PutAsync(newnbChasseursActifs);
                     await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
                 }
             }
