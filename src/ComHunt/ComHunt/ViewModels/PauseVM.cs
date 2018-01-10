@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive.Linq;
 using ComHunt.Models;
 using ComHunt.Views;
 using Firebase.Xamarin.Database;
@@ -19,6 +20,12 @@ namespace ComHunt.ViewModels
             _page = page;
             NumberChasse = NomChasse;
             initCommand();
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var observable = firebase
+                    .Child(NumberChasse)
+                    .Child("EtatDeChasse")
+                .AsObservable<Etat>()
+                .Subscribe(e => init(e.Key));
         }
 
         private void initCommand(){
@@ -42,11 +49,26 @@ namespace ComHunt.ViewModels
                                ).ToList();
             if (Bonjour[0].etat == "Actif")
             {
-                //await _page.Navigation.PushAsync(new TestBDPage(NumberChasse));//Ouvrir vue TestBD
                 _page.Navigation.PopModalAsync();
             }
             else await _page.DisplayAlert("Alerte", "Attente de l'activation du responsable de battue", "OK");//Afficher erreur 
         }
+        /*public async void Refresh()
+        {
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var observable = firebase
+                    .Child(NumberChasse)
+                    .Child("EtatDeChasse")
+                .AsObservable<Chasse>()
+                .Subscribe(c => init(c));
+        }*/
+
+        public async void init(Etat e){
+            if (c.etat=="actif"){
+                _page.Navigation.PopModalAsync();
+            }
+        }
+
     }
 }
 
