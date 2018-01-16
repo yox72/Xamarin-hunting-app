@@ -43,14 +43,14 @@ namespace ComHunt.ViewModels
         void init()
         {
 
-            if (!DependencyService.Get<IUserService>().IsLogged())
+            /*if (!DependencyService.Get<IUserService>().IsLogged())
             {
                 var loginPage = new LoginPage();
                 var loginVM = (LoginVM) loginPage.BindingContext;
                 loginVM.CallBack = OnNewUserCallback;
 
                 _page.Navigation.PushModalAsync(loginPage);
-            }
+            }*/
         }
 
         public void OnNewUserCallback(string name){

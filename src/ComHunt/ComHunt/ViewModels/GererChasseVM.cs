@@ -31,8 +31,7 @@ namespace ComHunt.ViewModels
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             await firebase
                 .Child(NumberChasse)
-                .Child("EtatDeChasse")
-                .Child("Etat")
+                .Child(NumberChasse)
                 .Child("etat")
                 .PutAsync("Actif");
         }
@@ -42,8 +41,7 @@ namespace ComHunt.ViewModels
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             await firebase
                 .Child(NumberChasse)
-                .Child("EtatDeChasse")
-                .Child("Etat")
+                .Child(NumberChasse)
                 .Child("etat")
                 .PutAsync("Arret");
         }

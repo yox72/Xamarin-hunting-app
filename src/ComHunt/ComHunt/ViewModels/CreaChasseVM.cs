@@ -47,7 +47,7 @@ namespace ComHunt.ViewModels
                 {
                     var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
                     //Creation de la liste des noms de chasse
-                    await firebase
+                    /*await firebase
                         .Child(NomChasse)
                         .Child("NameChasse")
                         .Child("Name")
@@ -127,8 +127,88 @@ namespace ComHunt.ViewModels
                       .Child("Nombre")
                       .Child("NombreChefs")
                       .Child("nombreChefsActifs")
+                        .PutAsync("0");*/
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("name")
+                        .PutAsync(NomChasse);
+                    //Creation de l'état de la chasse
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("etat")
+                        .PutAsync("Arret");
+                    //Creation des vues
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseVue")
+                        .Child("Vue")
+                        .Child("Sanglier")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
-                    
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseVue")
+                        .Child("Vue")
+                        .Child("Renard")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseVue")
+                        .Child("Vue")
+                        .Child("Chevreuil")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    //Creation des tuer
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseTuer")
+                        .Child("Tuer")
+                        .Child("Sanglier")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseTuer")
+                        .Child("Tuer")
+                        .Child("Renard")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChasseTuer")
+                        .Child("Tuer")
+                        .Child("Chevreuil")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase  //Nb chasseurs global
+                      .Child(NomChasse)
+                        .Child(NomChasse)
+                      .Child("nombreChasseurs")
+                        .PutAsync(NbChasseurs);
+                    await firebase  //Nb chasseurs actifs
+                      .Child(NomChasse)
+                        .Child(NomChasse)
+                      .Child("nombreChasseursActifs")
+                        .PutAsync("0");
+                    await firebase  //Nb Chefs de ligne
+                      .Child(NomChasse)
+                        .Child(NomChasse)
+                      .Child("nombreChefs")
+                        .PutAsync(NbChefs);
+                    await firebase  //Nb chefs de lign actifs
+                      .Child(NomChasse)
+                        .Child(NomChasse)
+                      .Child("nombreChefsActifs")
+                        .PutAsync("0");
                     await _page.Navigation.PushAsync(new WaitUserPage(NomChasse));//Ouvirir vue GererChasse
                 }
                 else await _page.DisplayAlert("Alerte", "Nom vide", "OK");

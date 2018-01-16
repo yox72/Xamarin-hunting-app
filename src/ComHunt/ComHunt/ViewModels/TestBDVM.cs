@@ -56,20 +56,11 @@ namespace ComHunt.ViewModels
         public async void getEtat()
         {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            var Bonjour = (await firebase
-                           .Child(NumberChasse)
-                           .Child("EtatDeChasse")
-                           .OrderByKey()
-                           //.LimitToFirst(2)
-                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                           .OnceAsync<Chasse>())
-                           .Select(item =>
-                                   new Chasse
-                                   {
-                                       etat = item.Object.etat
-                                   }
-                               ).ToList();
-            if (Bonjour[0].etat == "Arret")
+            var etat = (await firebase
+                              .Child(NumberChasse)
+                              .OnceAsync<Chasse>())
+                              .FirstOrDefault().Object.etat;
+            if (etat.Equals("Arret"))
             {
                 await _page.Navigation.PushModalAsync(new PausePage(NumberChasse));
             }
@@ -79,6 +70,7 @@ namespace ComHunt.ViewModels
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
 
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -100,6 +92,7 @@ namespace ComHunt.ViewModels
 
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Sanglier")
@@ -111,6 +104,7 @@ namespace ComHunt.ViewModels
         public async void VueRenard(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -131,6 +125,7 @@ namespace ComHunt.ViewModels
             number.ToString();
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Renard")
@@ -142,6 +137,7 @@ namespace ComHunt.ViewModels
         public async void VueChevreuil(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -162,6 +158,7 @@ namespace ComHunt.ViewModels
             string nombre = number.ToString();
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Chevreuil")
@@ -176,6 +173,7 @@ namespace ComHunt.ViewModels
         public async void TuerChevreuil(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -197,6 +195,7 @@ namespace ComHunt.ViewModels
 
             var list2 = (await firebase
                          .Child(NumberChasse)
+                         .Child(NumberChasse)
                         .Child("ChasseTuer")
                         //.Child("Vue")
                         .OrderByKey()
@@ -217,6 +216,7 @@ namespace ComHunt.ViewModels
 
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Chevreuil")
@@ -224,6 +224,7 @@ namespace ComHunt.ViewModels
                 .PutAsync(numberVue);
 
             await firebase
+                .Child(NumberChasse)
                 .Child(NumberChasse)
                 .Child("ChasseTuer")
                 .Child("Tuer")
@@ -236,6 +237,7 @@ namespace ComHunt.ViewModels
         public async void TuerRenard(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -257,6 +259,7 @@ namespace ComHunt.ViewModels
 
             var list2 = (await firebase
                         .Child(NumberChasse)
+                         .Child(NumberChasse)
                         .Child("ChasseTuer")
                         //.Child("Vue")
                         .OrderByKey()
@@ -277,6 +280,7 @@ namespace ComHunt.ViewModels
 
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Renard")
@@ -284,6 +288,7 @@ namespace ComHunt.ViewModels
                 .PutAsync(numberVue);
 
             await firebase
+                .Child(NumberChasse)
                 .Child(NumberChasse)
                 .Child("ChasseTuer")
                 .Child("Tuer")
@@ -294,6 +299,7 @@ namespace ComHunt.ViewModels
         public async void TuerSanglier(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
+                        .Child(NumberChasse)
                         .Child(NumberChasse)
                         .Child("ChasseVue")
                         //.Child("Vue")
@@ -315,6 +321,7 @@ namespace ComHunt.ViewModels
 
             var list2 = (await firebase
                         .Child(NumberChasse)
+                         .Child(NumberChasse)
                         .Child("ChasseTuer")
                         //.Child("Vue")
                         .OrderByKey()
@@ -335,6 +342,7 @@ namespace ComHunt.ViewModels
 
             await firebase
                 .Child(NumberChasse)
+                .Child(NumberChasse)
                 .Child("ChasseVue")
                 .Child("Vue")
                 .Child("Sanglier")
@@ -342,6 +350,7 @@ namespace ComHunt.ViewModels
                 .PutAsync(numberVue);
 
             await firebase
+                .Child(NumberChasse)
                 .Child(NumberChasse)
                 .Child("ChasseTuer")
                 .Child("Tuer")

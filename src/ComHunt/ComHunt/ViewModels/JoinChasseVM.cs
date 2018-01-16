@@ -36,43 +36,23 @@ namespace ComHunt.ViewModels
 
         public async void Entrer(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            bool toto = TireurChef;
-            var Bonjour = (await firebase
+            var chasseNom = (await firebase
                            .Child(NumeroJoinChasse)
-                           .Child("NameChasse")
-                           .OrderByKey()
-                           //.LimitToFirst(2)
-                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                            .OnceAsync<Chasse>())
-                           .Select(item =>
-                                   new Chasse
-                                   {
-                                        name = item.Object.name
-                                   }
-                               ).ToList();
+                .FirstOrDefault().Object.name;
             try
             {
-                if (Bonjour[0].name.Contains(NumeroJoinChasse))
+                if (chasseNom.Equals(NumeroJoinChasse))
                 {
                     //Lecture du nombre de chasseurs actifs
-                    var list = (await firebase
-                           .Child(NumeroJoinChasse)
-                           .Child("Nombre")
-                           .OrderByKey()
-                           //.LimitToFirst(2)
-                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                           .OnceAsync<Chasse>())
-                           .Select(item =>
-                                   new Chasse
-                                   {
-                                    nombreChasseursActifs = item.Object.nombreChasseursActifs
-                                   }
-                               ).ToList();
-                    int newnbChasseursActifs = int.Parse(list[0].nombreChasseursActifs) + 1;
+                    var listChasseursActifs = (await firebase
+                                .Child(NumeroJoinChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.nombreChasseursActifs;
+                    int newnbChasseursActifs = int.Parse(listChasseursActifs) + 1;
                     await firebase  //Nb chasseurs actifs
                         .Child(NumeroJoinChasse)
-                      .Child("Nombre")
-                      .Child("NombreChasseurs")
+                        .Child(NumeroJoinChasse)
                       .Child("nombreChasseursActifs")
                         .PutAsync(newnbChasseursActifs);
                     await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
