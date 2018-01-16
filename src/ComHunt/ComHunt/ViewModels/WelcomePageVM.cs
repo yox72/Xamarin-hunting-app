@@ -21,6 +21,7 @@ namespace ComHunt.ViewModels
         public ICommand deconnexionCommand { get; set; }
         public ICommand connectionBluetoothCommand { get; set; }
         public ICommand testBDCommand { get; set; }
+        public ICommand mapCommand { get; set; }
 
         public WelcomePageVM(Page page)
         {
@@ -36,6 +37,7 @@ namespace ComHunt.ViewModels
             deconnexionCommand = new Command(Deconnexion);
             connectionBluetoothCommand = new Command(ConnectionBluetooth);
             testBDCommand = new Command(TestBD);
+            mapCommand = new Command(Map);
         }
 
         void init()
@@ -74,7 +76,12 @@ namespace ComHunt.ViewModels
      
         public void TestBD()
         {
-                _page.Navigation.PushAsync(new TestBDPage(""));//Ouvrir vue TestBD
+            _page.Navigation.PushAsync(new TestBDPage(""));//Ouvrir vue TestBD
+        }
+
+        public void Map()
+        {
+            //_page.Navigation.PushAsync(new MapPage());
         }
 
         async void Deconnexion()

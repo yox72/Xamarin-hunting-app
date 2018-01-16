@@ -14,6 +14,7 @@ namespace ComHunt.ViewModels
         private Page _page;
         public Command refreshCommand { get; set; }
         public string NumberChasse;
+        private string state = "";
 
         public PauseVM(Page page, string NomChasse)
         {
@@ -21,11 +22,45 @@ namespace ComHunt.ViewModels
             NumberChasse = NomChasse;
             initCommand();
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            /*var observable = firebase
+                .Child("Chasse n°1")
+                .Child("etat")
+                .AsObservable<string>()
+                .Subscribe(
+                    c =>
+                    {
+                        init(c.Object);
+                        System.Diagnostics.Debug.WriteLine("State of chasse n°1 : " + c.Object);
+                    });
+            initDB();*/
+            /*var observable = firebase
+                .Child("chasses")
+                .AsObservable<Chasse>()
+                .Subscribe(
+                    c =>
+                    {
+                        init(c.Object);
+                    });*/
             var observable = firebase
-                    .Child(NumberChasse)
-                    .Child("EtatDeChasse")
+                .Child(NumberChasse)
+                .Child("EtatDeChasse")
                 .AsObservable<Etat>()
-                .Subscribe(e => init(e.Key));
+                .Subscribe(
+                    c =>
+                    {
+                        init(c.Object);
+                    });
+        }
+
+        private async void initDB(){
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var items = await firebase.Child("chasses").OnceAsync<Chasse>();
+            foreach(var item in items)
+            {
+                var name = item.Object.name;
+                var etat = item.Object.etat;
+            }
+
         }
 
         private void initCommand(){
@@ -34,24 +69,16 @@ namespace ComHunt.ViewModels
 
         public async void Refresh(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            var Bonjour = (await firebase
-                           .Child(NumberChasse)
-                           .Child("EtatDeChasse")
-                           .OrderByKey()
-                           //.LimitToFirst(2)
-                           //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                           .OnceAsync<Etat>())
-                           .Select(item =>
-                                   new Etat
-                                   {
-                                       etat = item.Object.etat
-                                   }
-                               ).ToList();
-            if (Bonjour[0].etat == "Actif")
+            var chasseEtat = 
+                (await firebase.Child(NumberChasse).Child("EtatDeChasse").OnceAsync<Etat>())
+                    .FirstOrDefault().Object.etat;
+            
+            if (/*chasseEtat.Equals("Actif")*/ state.Equals("True"))
             {
                 _page.Navigation.PopModalAsync();
             }
-            else await _page.DisplayAlert("Alerte", "Attente de l'activation du responsable de battue", "OK");//Afficher erreur 
+            else 
+                await _page.DisplayAlert("Alerte", "Attente de l'activation du responsable de battue", "OK");//Afficher erreur 
         }
         /*public async void Refresh()
         {
@@ -63,9 +90,10 @@ namespace ComHunt.ViewModels
                 .Subscribe(c => init(c));
         }*/
 
-        public async void init(Etat e){
-            if (c.etat=="actif"){
+        public async void init(Etat c){
+            if (c.etat=="Actif"){
                 _page.Navigation.PopModalAsync();
+                //state = "True";
             }
         }
 

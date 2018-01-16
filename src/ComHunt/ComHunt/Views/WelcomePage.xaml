@@ -6,7 +6,7 @@
             <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
                 <Button Text="Créer Chasse" Command="{Binding creaChasseCommand}"/>
                 <Button Text="Rejoindre chasse" Command="{Binding joinChasseCommand}"/>
-                <Button Text="Carte"/>
+                <Button Text="Carte" Command="{Binding mapCommand}"/>
                 <Button Text="Bluetooth" Command="{Binding connectionBluetoothCommand}"/>
                 <Button Text="Base de donnée" Command="{Binding testBDCommand}"/>
                 <Button Text="Déconnexion" Command="{Binding deconnexionCommand}"/>
