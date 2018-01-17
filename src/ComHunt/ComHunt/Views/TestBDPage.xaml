@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.TestBDPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="20">
             <Button Text="Chevreuil Vue" Command ="{Binding chevreuilVueCommand}"/>
             <Button Text="Renard Vue" Command ="{Binding renardVueCommand}"/>
             <Button Text="Sanglier Vue" Command ="{Binding sanglierVueCommand}"/>

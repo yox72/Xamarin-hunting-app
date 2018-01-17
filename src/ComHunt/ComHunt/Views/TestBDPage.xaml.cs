@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using ComHunt.Database;
 using ComHunt.Models;
 using ComHunt.ViewModels;
@@ -11,6 +9,13 @@ namespace ComHunt.Views
     public partial class TestBDPage : ContentPage
     {
         ObservableCollection<Vue> list = new ObservableCollection<Vue>();
+
+        public TestBDPage()
+        {
+            InitializeComponent();
+            BindingContext = new TestBDVM(this, "");
+            _lst.BindingContext = list;
+        }
 
         public TestBDPage(string NumberJoinChasse)
         {

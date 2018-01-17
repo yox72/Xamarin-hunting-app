@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.WaitUserPage">
-	<ContentPage.Content>
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="ComHunt.Views.WaitUserPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="20,0,20,0" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
-            <Label Text="En attente des chasseurs" HorizontalOptions="Center"/>
-            <StackLayout Orientation="Horizontal">
+            
+            <Label Text="En attente des chasseurs" HorizontalOptions="Center" FontSize = "Large" FontAttributes="Bold" Margin="0,0,0,30"/>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10,20,10,0">
                 <Label Text="{Binding nombreChasseurActifs, StringFormat='{0}'}"/>
                 <Label Text="/"/>
                 <Label Text="{Binding nombreChasseur, StringFormat='{0}'}"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10,20,10,20">
                 <Label Text="{Binding nombreChefsActifs, StringFormat='{0}'}"/>
                 <Label Text="/"/>
                 <Label Text="{Binding nombreChefs, StringFormat='{0}'}"/>
             </StackLayout>
-            <Button Text="Refresh" Command="{Binding refreshCommand}"/>
+            
+            <Button Text="Refresh" Command="{Binding refreshCommand}" HorizontalOptions="Center" FontSize="Large"/>
+            
         </StackLayout>
 	</ContentPage.Content>
+    
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
-using ComHunt.Services;
 using ComHunt.Views;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
@@ -8,12 +8,14 @@ using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
 {
-    public class CreaChasseVM : ContentView
+    public class CreaChasseVM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private Page _page;
         public string NomChasse { get; set; }
-        public string NbChefs { get; set; }
-        public string NbChasseurs { get; set; }
+        public int NbChefs { get; set; }
+        public int NbChasseurs { get; set; }
 
         public ICommand creationChasseCommand { get; set; }
 
@@ -41,8 +43,6 @@ namespace ComHunt.ViewModels
         public async void CreationChasse(){
             try
             {
-                int.Parse(NbChefs);
-                int.Parse(NbChasseurs);
                 if (NomChasse != null && NomChasse.Length > 0)
                 {
                     var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");

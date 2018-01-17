@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.JoinChassePage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="ComHunt.Views.JoinChassePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="20,0,20,0" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="20,0,20,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
 	<ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
-            <Label Text="Entrer le nom de la chasse : " FontSize="30"/>
-            <Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/>
-            <Entry Text ="{Binding NumeroJoinChasse}" Placeholder="Nom de chasse"/>
-            <Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/>
-            <StackLayout Orientation="Horizontal">
-                <Switch/>
-                <StackLayout><Label Text=""/><Label Text="Chef de ligne" FontSize="12"/></StackLayout>
+            
+            <Label Text="Rejoindre une chasse" FontSize="Large" HorizontalOptions="Center" Margin="0,0,0,30"/>
+
+            <Label Text="Nom"/>
+            <Entry Text="{Binding NumeroJoinChasse}" Placeholder="Nom de la chasse"/>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+                <Switch VerticalOptions="Center"/>
+                <Label Text="Chef de ligne" VerticalOptions="Center"/>
             </StackLayout>
-            <Button Text="Entrer" Command="{Binding entrerCommand}"/>
+            <Button Text="Rejoindre" FontSize="Large" Command="{Binding entrerCommand}" HorizontalOptions="Center"/>
         </StackLayout>
 	</ContentPage.Content>
+    
 </ContentPage>

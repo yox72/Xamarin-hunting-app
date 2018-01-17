@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ComHunt.Models;
-using ComHunt.Services;
 using ComHunt.Views;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
@@ -12,9 +11,10 @@ using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
 {
-    public class TestBDVM : ContentView
+    public class TestBDVM : INotifyPropertyChanged
     {
         private Page _page;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string NumberChasse;
         public string etatChasse;

@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using ComHunt.Services;
 using ComHunt.Views;
 using Xamarin.Forms;
-using Plugin.Connectivity;  
 
 namespace ComHunt.ViewModels
 {
@@ -60,7 +58,7 @@ namespace ComHunt.ViewModels
 
         public void CreaChasse(){
             //Créer numéro random de la chasse
-            _page.Navigation.PushAsync(new CreaChassePage());//Ouvirir vue CreaChasse
+            _page.Navigation.PushAsync(new CreaChassePage());//Ouvrir vue CreaChasse
         }
 
         public void JoinChasse()
@@ -73,7 +71,6 @@ namespace ComHunt.ViewModels
             _page.Navigation.PushAsync(new ConnectionBluetoothPage());//Ouvirir vue ConnectionBluetooth
         }
 
-     
         public void TestBD()
         {
             _page.Navigation.PushAsync(new TestBDPage(""));//Ouvrir vue TestBD

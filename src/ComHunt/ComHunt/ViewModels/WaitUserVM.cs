@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using ComHunt.Models;
@@ -9,14 +9,16 @@ using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
 {
-    public class WaitUserVM : ContentView
+    public class WaitUserVM : INotifyPropertyChanged
     {
         private Page _page;
-        public string NumberChasse;
-        public string nombreChasseurs;
-        public string nombreChasseurActifs;
-        public string nombreChefs;
-        public string nombreChefsActifs;
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string NumberChasse { get; set; }
+        public string nombreChasseurs { get; set; }
+        public string nombreChasseurActifs { get; set; }
+        public string nombreChefs { get; set; }
+        public string nombreChefsActifs { get; set; }
 
         public ICommand refreshCommand { get; set; } 
 

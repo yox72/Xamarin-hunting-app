@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.CreaChassePage">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="ComHunt.Views.CreaChassePage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="20,0,20,0" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="Margin" Value="20,0,20,10" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
 	<ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
-            <Label Text="Chasse" FontSize = "30"/>
-            <Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/><Label Text=""/>
-            <Label Text="Nom de la chasse" FontSize = "20"/>
+            
+            <Label Text="Creer une Chasse" FontSize = "Large" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,0,0,30"/>
+
+            <Label Text="Nom"/>
             <Entry Text="{Binding NomChasse}" Placeholder="Nommez votre chasse"/>
-            <Label Text="Nombre de chefs de lignes" FontSize = "20"/>
-            <Entry Text="{Binding NbChefs}" Placeholder="Nombre de chefs de lignes"/>
-            <Label Text="Nombre de tireurs" FontSize = "20"/>
-            <Entry Text="{Binding NbChasseurs}" Placeholder="Nombre de tireurs"/>
-            <Label Text=""/>
-            <Label Text=""/>
-            <Label Text=""/>
-            <Button Text="Valider" Command="{Binding creationChasseCommand}"/> 
+            
+            <Label Text="Chefs de ligne"/>
+            <Entry Text="{Binding NbChefs}" Placeholder="Nombre de chefs de lignes" Keyboard="Numeric"/>
+            
+            <Label Text="Tireurs"/>
+            <Entry Text="{Binding NbChasseurs}" Placeholder="Nombre de tireurs" Keyboard="Numeric"/>
+            
+            <Button Text="Valider" Command="{Binding creationChasseCommand}" FontSize="Medium" HorizontalOptions="Center"/> 
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

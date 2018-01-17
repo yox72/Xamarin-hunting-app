@@ -1,8 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using ComHunt.Models;
-using ComHunt.Services;
 using ComHunt.Views;
 using Firebase.Xamarin.Database;
 using Firebase.Xamarin.Database.Query;
@@ -10,9 +10,11 @@ using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
 {
-    public class JoinChasseVM : ContentView
+    public class JoinChasseVM : INotifyPropertyChanged
     {
         private Page _page;
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public string NumeroJoinChasse { get; set; }
         public bool TireurChef { get; set; }
 
@@ -58,7 +60,7 @@ namespace ComHunt.ViewModels
                     await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             { 
                 await _page.DisplayAlert("Alerte", "Nom de chasse incorrect", "OK");//Afficher erreur }     
             }
