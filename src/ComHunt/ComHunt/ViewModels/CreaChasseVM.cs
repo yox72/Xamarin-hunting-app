@@ -143,50 +143,38 @@ namespace ComHunt.ViewModels
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseVue")
-                        .Child("Vue")
-                        .Child("Sanglier")
+                        .Child("SanglierVue")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseVue")
-                        .Child("Vue")
-                        .Child("Renard")
+                        .Child("RenardVue")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseVue")
-                        .Child("Vue")
-                        .Child("Chevreuil")
+                        .Child("ChevreuilVue")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     //Creation des tuer
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseTuer")
-                        .Child("Tuer")
-                        .Child("Sanglier")
+                        .Child("SanglierTuer")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseTuer")
-                        .Child("Tuer")
-                        .Child("Renard")
+                        .Child("RenardTuer")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
-                        .Child("ChasseTuer")
-                        .Child("Tuer")
-                        .Child("Chevreuil")
+                        .Child("ChevreuilTuer")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");
                     await firebase  //Nb chasseurs global

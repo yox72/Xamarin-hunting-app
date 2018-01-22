@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using ComHunt.Views;
+using Plugin.BLE;
 using Plugin.BLE.Abstractions.Contracts;
+using Plugin.BLE.Abstractions.Exceptions;
 using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
@@ -29,8 +31,8 @@ namespace ComHunt.ViewModels
             _page = page;
             this.ble = ble;
             this.adapter = adapter;
-            init();
             initCommands();
+            //var state = ble.State;
         }
 
 
@@ -43,13 +45,16 @@ namespace ComHunt.ViewModels
             ledShutDownCommand = new Command(LedShutDown);
         }
 
-        private async void init(){
-            //adapter.DeviceDiscovered += (s, a) => deviceList.Add(a.Device);
-            //await adapter.StartScanningForDevicesAsync();
+        private async void init(string state){
+            
         }
 
         public async void Connection(){
-            //await adapter.ConnectToDeviceAsync("device");    //Nom de la device
+            if (device.IsPairingRequestSupported && device.PairingStatus != PairingStatus.Paired)
+            {
+                // there is an optional argument to pass a PIN in PairRequest as well
+                device.PairRequest().Subscribe(isSuccessful => { });
+            }
         }
         public void Deconnection(){}
         public void Led1(){

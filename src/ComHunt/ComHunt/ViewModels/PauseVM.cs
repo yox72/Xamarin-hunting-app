@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Reactive.Linq;
 using ComHunt.Models;
@@ -9,12 +10,13 @@ using Xamarin.Forms;
 
 namespace ComHunt.ViewModels
 {
-    public class PauseVM : ContentView
+    public class PauseVM : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged; //Event update
+
         private Page _page;
         public Command refreshCommand { get; set; }
         public string NumberChasse;
-        private string state = "";
 
         public PauseVM(Page page, string NomChasse)
         {
@@ -22,25 +24,6 @@ namespace ComHunt.ViewModels
             NumberChasse = NomChasse;
             initCommand();
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            /*var observable = firebase
-                .Child("Chasse n°1")
-                .Child("etat")
-                .AsObservable<string>()
-                .Subscribe(
-                    c =>
-                    {
-                        init(c.Object);
-                        System.Diagnostics.Debug.WriteLine("State of chasse n°1 : " + c.Object);
-                    });
-            initDB();*/
-            /*var observable = firebase
-                .Child("chasses")
-                .AsObservable<Chasse>()
-                .Subscribe(
-                    c =>
-                    {
-                        init(c.Object);
-                    });*/
             var observable = firebase
                 .Child(NumberChasse)
                 .AsObservable<Chasse>()
@@ -91,8 +74,9 @@ namespace ComHunt.ViewModels
         }*/
 
         public async void init(Chasse c){
-            if (c.etat=="Actif"){
-                _page.Navigation.PopModalAsync();
+            if (c.etat == "Actif"){
+                await _page.Navigation.PopModalAsync();
+                //await _page.DisplayAlert("Actif", "La chasse est actif", "OK");
                 //state = "True";
             }
         }

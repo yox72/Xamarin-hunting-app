@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ComHunt.Models;
@@ -32,15 +34,17 @@ namespace ComHunt.ViewModels
             _page = page;
             initCommands();
             NumberChasse = NumberJoinChasse;
-            getEtat();
-            init();
-        }
-
-        public void init(){
-            /*if (etatChasse == "Arret")
-            {
-                _page.Navigation.PushModalAsync(new PausePage());
-            }*/
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            /*var observable = firebase
+                .Child(NumberChasse)
+                .AsObservable<Chasse>()
+                .Subscribe(
+                    c =>
+                    {
+                        getEtat(c.Object);
+                        SendBTData(c.Object);
+                    });*/
+            getEtat2();
         }
 
         private void initCommands(){
@@ -53,7 +57,15 @@ namespace ComHunt.ViewModels
             //affichageCommand = new Command(Affichage);
         }
 
-        public async void getEtat()
+        public async void getEtat(Chasse c)
+        {
+            if (c.etat == "Arret")
+            {
+                await _page.Navigation.PushModalAsync(new PausePage(NumberChasse));
+            }
+        }
+
+        public async void getEtat2()
         {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var etat = (await firebase
@@ -66,25 +78,26 @@ namespace ComHunt.ViewModels
             }
         }
 
+        public async void SendBTData(Chasse c){
+            //send c.ChevreuilTuer;
+            //send c.ChevreuilVue;
+            //send c.RenardTuer;
+            //send c.RenardVue;
+            //...
+        }
+
         public async void VueSanglier(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
 
             var nbSangl = (await firebase
                               .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Sanglier;
+                              .OnceAsync<Chasse>())
+                              .FirstOrDefault().Object.SanglierVue;
             int number = int.Parse(nbSangl) + 1;
-            number.ToString();
-
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Sanglier")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("SanglierVue")
                 .PutAsync(number);
         }
 
@@ -92,20 +105,14 @@ namespace ComHunt.ViewModels
         public async void VueRenard(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbRen = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Renard;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.RenardVue;
             int number = int.Parse(nbRen) + 1;
-            number.ToString();
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Renard")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("RenardVue")
                 .PutAsync(number);
         }
 
@@ -113,20 +120,14 @@ namespace ComHunt.ViewModels
         public async void VueChevreuil(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbChev = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Chevreuil;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.ChevreuilVue;
             int number = int.Parse(nbChev) + 1;
-            string nombre = number.ToString();
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Chevreuil")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("ChevreuilVue")
                 .PutAsync(number);
         }
 
@@ -137,37 +138,24 @@ namespace ComHunt.ViewModels
         public async void TuerChevreuil(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbChev = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Chevreuil;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.ChevreuilVue;
             int numberVue = int.Parse(nbChev) - 1;
-            numberVue.ToString();
-
             var nbChevT = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseTuer")
-                              .OnceAsync<Tuer>())
-                              .FirstOrDefault().Object.Chevreuil;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.ChevreuilTuer;
             int numberTuer = int.Parse(nbChevT) + 1;
-            numberTuer.ToString();
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Chevreuil")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("ChevreuilVue")
                 .PutAsync(numberVue);
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Chevreuil")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("ChevreuilTuer")
                 .PutAsync(numberTuer);
         }
 
@@ -175,77 +163,47 @@ namespace ComHunt.ViewModels
         public async void TuerRenard(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbRen = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Renard;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.RenardVue;
             int numberVue = int.Parse(nbRen) - 1;
-            numberVue.ToString();
-
             var nbRenT = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseTuer")
-                              .OnceAsync<Tuer>())
-                              .FirstOrDefault().Object.Renard;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.RenardTuer;
             int numberTuer = int.Parse(nbRenT) + 1;
-            numberTuer.ToString();
-
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Renard")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("RenardVue")
                 .PutAsync(numberVue);
-
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Renard")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("RenardTuer")
                 .PutAsync(numberTuer);
         }
         public async void TuerSanglier(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbSang = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseVue")
-                              .OnceAsync<Vue>())
-                              .FirstOrDefault().Object.Sanglier;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.SanglierVue;
             int numberVue = int.Parse(nbSang) - 1;
-            numberVue.ToString();
-
             var nbSangT = (await firebase
-                              .Child(NumberChasse)
-                              .Child(NumberChasse)
-                              .Child("ChasseTuer")
-                              .OnceAsync<Tuer>())
-                              .FirstOrDefault().Object.Sanglier;
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object.SanglierTuer;
             int numberTuer = int.Parse(nbSangT) + 1;
-            numberTuer.ToString();
-
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseVue")
-                .Child("Vue")
-                .Child("Sanglier")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("SanglierVue")
                 .PutAsync(numberVue);
-
             await firebase
                 .Child(NumberChasse)
                 .Child(NumberChasse)
-                .Child("ChasseTuer")
-                .Child("Tuer")
-                .Child("Sanglier")
-                //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                .Child("SanglierTuer")
                 .PutAsync(numberTuer);
         }
 
@@ -255,8 +213,6 @@ namespace ComHunt.ViewModels
                         .Child("Chasse")
                         .Child("ChasseVue")
                         .OrderByKey()
-                        //.LimitToFirst(2)
-                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .OnceAsync<Vue>())
                         .Select(item =>
                                 new Vue

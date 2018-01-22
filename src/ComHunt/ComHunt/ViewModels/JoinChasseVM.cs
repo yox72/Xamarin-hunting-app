@@ -38,12 +38,13 @@ namespace ComHunt.ViewModels
 
         public async void Entrer(){
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            var chasseNom = (await firebase
-                           .Child(NumeroJoinChasse)
-                           .OnceAsync<Chasse>())
-                .FirstOrDefault().Object.name;
             try
             {
+                var chasseNom = (await firebase
+                               .Child(NumeroJoinChasse)
+                               .OnceAsync<Chasse>())
+                    .FirstOrDefault().Object.name;
+            
                 if (chasseNom.Equals(NumeroJoinChasse))
                 {
                     //Lecture du nombre de chasseurs actifs
