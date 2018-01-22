@@ -20,7 +20,7 @@ namespace ComHunt.ViewModels
         public string nombreChefs { get; set; }
         public string nombreChefsActifs { get; set; }
 
-        public ICommand refreshCommand { get; set; } 
+        public ICommand refreshCommand { get; set; }
 
         public WaitUserVM(Page page, string NumeroChasse)
         {
@@ -29,37 +29,25 @@ namespace ComHunt.ViewModels
             initCommand();
         }
 
-        public void initCommand(){
+        public void initCommand()
+        {
             refreshCommand = new Command(refresh);
         }
 
-        public async void refresh(){
+        public async void refresh()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            var list = (await firebase
-                                 .Child(NumberChasse)
-                                 .Child("Nombre")
-                                   .OrderByKey()
-                                   //.LimitToFirst(2)
-                                   //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
-                                   .OnceAsync<Chasse>())
-                                   .Select(item =>
-                                           new Chasse
-                                           {
-                                               nombreChasseurs = item.Object.nombreChasseurs,
-                                               nombreChasseursActifs = item.Object.nombreChasseursActifs,
-                                               nombreChefs = item.Object.nombreChefs,
-                                               nombreChefsActifs = item.Object.nombreChefsActifs
-                                           }
-                                       ).ToList();
-            nombreChasseurs = list[0].nombreChasseurs;
-            nombreChasseurActifs = list[0].nombreChasseursActifs;
-            nombreChefs = list[1].nombreChefs;
-            nombreChefsActifs = list[1].nombreChefsActifs;
-
-            if (nombreChefs == nombreChefsActifs && nombreChasseurs == nombreChasseurActifs){
+            var c = (await firebase
+                                .Child(NumberChasse)
+                                .OnceAsync<Chasse>())
+                                .FirstOrDefault().Object;
+            
+            if (c.nombreChefs == c.nombreChefsActifs && c.nombreChasseurs == c.nombreChasseursActifs)
+            {
                 await _page.Navigation.PushAsync(new GererChassePage(NumberChasse));//Ouvirir vue GererChasse
             }
         }
+
     }
 }
 

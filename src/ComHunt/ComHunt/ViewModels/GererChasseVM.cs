@@ -22,12 +22,14 @@ namespace ComHunt.ViewModels
             initCommands();
         }
 
-        public void initCommands(){
+        public void initCommands()
+        {
             demarrerCommand = new Command(DemarrerChasse);
             arretCommand = new Command(ArretChasse);
         }
 
-        public async void DemarrerChasse(){
+        public async void DemarrerChasse()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             await firebase
                 .Child(NumberChasse)

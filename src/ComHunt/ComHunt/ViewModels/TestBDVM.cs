@@ -34,8 +34,8 @@ namespace ComHunt.ViewModels
             _page = page;
             initCommands();
             NumberChasse = NumberJoinChasse;
-            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
-            /*var observable = firebase
+            /*var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var observable = firebase
                 .Child(NumberChasse)
                 .AsObservable<Chasse>()
                 .Subscribe(
@@ -47,7 +47,8 @@ namespace ComHunt.ViewModels
             getEtat2();
         }
 
-        private void initCommands(){
+        private void initCommands()
+        {
             sanglierVueCommand = new Command(VueSanglier);
             renardVueCommand = new Command(VueRenard);
             chevreuilVueCommand = new Command(VueChevreuil);
@@ -57,13 +58,13 @@ namespace ComHunt.ViewModels
             //affichageCommand = new Command(Affichage);
         }
 
-        public async void getEtat(Chasse c)
+        /*public async void getEtat(Chasse c)
         {
             if (c.etat == "Arret")
             {
                 await _page.Navigation.PushModalAsync(new PausePage(NumberChasse));
             }
-        }
+        }*/
 
         public async void getEtat2()
         {
@@ -78,7 +79,8 @@ namespace ComHunt.ViewModels
             }
         }
 
-        public async void SendBTData(Chasse c){
+        public async void SendBTData(Chasse c)
+        {
             //send c.ChevreuilTuer;
             //send c.ChevreuilVue;
             //send c.RenardTuer;
@@ -86,7 +88,8 @@ namespace ComHunt.ViewModels
             //...
         }
 
-        public async void VueSanglier(){
+        public async void VueSanglier()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
 
             var nbSangl = (await firebase
@@ -102,7 +105,8 @@ namespace ComHunt.ViewModels
         }
 
 
-        public async void VueRenard(){
+        public async void VueRenard()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbRen = (await firebase
                                 .Child(NumberChasse)
@@ -117,7 +121,8 @@ namespace ComHunt.ViewModels
         }
 
 
-        public async void VueChevreuil(){
+        public async void VueChevreuil()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbChev = (await firebase
                                 .Child(NumberChasse)
@@ -135,7 +140,8 @@ namespace ComHunt.ViewModels
 
 
 
-        public async void TuerChevreuil(){
+        public async void TuerChevreuil()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbChev = (await firebase
                                 .Child(NumberChasse)
@@ -160,7 +166,8 @@ namespace ComHunt.ViewModels
         }
 
 
-        public async void TuerRenard(){
+        public async void TuerRenard()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbRen = (await firebase
                                 .Child(NumberChasse)
@@ -183,7 +190,8 @@ namespace ComHunt.ViewModels
                 .Child("RenardTuer")
                 .PutAsync(numberTuer);
         }
-        public async void TuerSanglier(){
+        public async void TuerSanglier()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var nbSang = (await firebase
                                 .Child(NumberChasse)
@@ -207,7 +215,8 @@ namespace ComHunt.ViewModels
                 .PutAsync(numberTuer);
         }
 
-        public async Task<List<Vue>>Afficher(){
+        public async Task<List<Vue>> Afficher()
+        {
             var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var list = (await firebase
                         .Child("Chasse")

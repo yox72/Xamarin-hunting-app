@@ -28,7 +28,8 @@ namespace ComHunt.ViewModels
 
         private Random randomNumber = new Random();
 
-        public void init(){
+        public void init()
+        {
             //int numChasse = randomNumber.Next(1, 9999);
             //Application.Current.Properties["NumeroChasse"] = numChasse;
             //NomChasse = DependencyService.Get<IUserService>().getName();
@@ -36,11 +37,13 @@ namespace ComHunt.ViewModels
             //NbChasseurs = DependencyService.Get<IUserService>().getName();
         }
 
-        public void initCommand(){
+        public void initCommand()
+        {
             creationChasseCommand = new Command(CreationChasse);
         }
 
-        public async void CreationChasse(){
+        public async void CreationChasse()
+        {
             try
             {
                 if (NomChasse != null && NomChasse.Length > 0)
