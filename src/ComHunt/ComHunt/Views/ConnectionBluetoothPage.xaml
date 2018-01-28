@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.ConnectionBluetoothPage">
 	<ContentPage.Content>
-        <StackLayout>
-            <Button Text="Connexion" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Déconnexion" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Allumer LED 1" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Allumer LED 2" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Allumer LED 3" Command="{Binding creaChasseCommand}"/>
-            <Button Text="Eteindre les LEDs" Command="{Binding creaChasseCommand}"/>
+        <StackLayout HorizontalOptions="CenterAndExpand">
+                <Button x:Name="btnStatus" Text="State" Clicked="btnStatus_Clicked"/>
+                <Button x:Name="btnScanDev" Text="Scan" Clicked="btnScanDev_Clicked"/>
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
+                <Button x:Name="btnConnect" Text="Connection" Clicked="btnConnect_Clicked"/>
+                <Button x:Name="btnConnectKnow" Text="Connection Know" Clicked="btnConnectKnow_Clicked"/>
+            </StackLayout>
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
+                <Button x:Name="btnGetServs" Text="Obtenir les services" Clicked="btnGetServs_Clicked"/>
+            </StackLayout>
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
+                <Button x:Name="btnGetCaracters" Text="Obtenir characteristiques" Clicked="btnGetCaracters_Clicked"/>
+                <Button x:Name="btnGetRW" Text="Write" Clicked="btnGetW_Clicked"/>
+                <Button x:Name="btnGetRW" Text="Ready" Clicked="btnGetR_Clicked"/>
+                <Button x:Name="btnUpdate" Text="Update" Clicked="btnUpdate_Clicked"/>
+            </StackLayout>
+            
+            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
+                <Button x:Name="btnDescriptor" Text="Obtenir Description" Clicked="btnDescriptor_Clicked"/>
+                <Button x:Name="btnGetDescRW" Text="Read/Write" Clicked="btnGetDescRW_Clicked"/>
+            </StackLayout>
+
+            <ListView x:Name="lv" ItemSelected="lv_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding NativeDevice.ID}"/>
+                                <Label Text="{Binding NativeDevice.Name}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
 
 	</ContentPage.Content>

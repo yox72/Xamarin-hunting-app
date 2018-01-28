@@ -34,7 +34,7 @@ namespace ComHunt.ViewModels
             _page = page;
             initCommands();
             NumberChasse = NumberJoinChasse;
-            /*var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var observable = firebase
                 .Child(NumberChasse)
                 .AsObservable<Chasse>()
@@ -43,7 +43,7 @@ namespace ComHunt.ViewModels
                     {
                         getEtat(c.Object);
                         SendBTData(c.Object);
-                    });*/
+                    });
             getEtat2();
         }
 
@@ -58,13 +58,13 @@ namespace ComHunt.ViewModels
             //affichageCommand = new Command(Affichage);
         }
 
-        /*public async void getEtat(Chasse c)
+        public async void getEtat(Chasse c)
         {
             if (c.etat == "Arret")
             {
                 await _page.Navigation.PushModalAsync(new PausePage(NumberChasse));
             }
-        }*/
+        }
 
         public async void getEtat2()
         {

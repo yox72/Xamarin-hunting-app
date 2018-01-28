@@ -2,17 +2,18 @@
 using System.ComponentModel;
 using System.Windows.Input;
 using ComHunt.Views;
-using Plugin.BLE.Abstractions.Contracts;
+//using Plugin.BLE.Abstractions.Contracts;
+//using MvvmCross.Plugins.BLE;
 using Xamarin.Forms;
+using MvvmCross.Platform;
 
 namespace ComHunt.ViewModels
 {
     public class ConnectionBluetoothVM : INotifyPropertyChanged
     {
         private Page _page;
-        private IAdapter adapter;
-        private IBluetoothLE ble;
-        private ListView deviceList;
+        //IAdapter adapter;
+        //IBluetoothLE ble;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -24,11 +25,12 @@ namespace ComHunt.ViewModels
         public ICommand ledShutDownCommand { get; set; }
 
 
-        public ConnectionBluetoothVM(Page page, IBluetoothLE ble, IAdapter adapter)
+        public ConnectionBluetoothVM(Page page/*, IBluetoothLE ble, IAdapter adapter*/)
         {
+            // discover some devices
             _page = page;
-            this.ble = ble;
-            this.adapter = adapter;
+            //this.ble = ble;
+            //this.adapter = adapter;
             init();
             initCommands();
         }
