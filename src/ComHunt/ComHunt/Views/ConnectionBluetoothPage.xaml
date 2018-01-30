@@ -9,23 +9,14 @@
                 <Button x:Name="btnConnect" Text="Connection" Clicked="btnConnect_Clicked"/>
                 <Button x:Name="btnConnectKnow" Text="Connection Know" Clicked="btnConnectKnow_Clicked"/>
             </StackLayout>
-            
-            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
-                <Button x:Name="btnGetServs" Text="Obtenir les services" Clicked="btnGetServs_Clicked"/>
-            </StackLayout>
-            
-            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
-                <Button x:Name="btnGetCaracters" Text="Obtenir characteristiques" Clicked="btnGetCaracters_Clicked"/>
-                <Button x:Name="btnGetRW" Text="Write" Clicked="btnGetW_Clicked"/>
-                <Button x:Name="btnGetRW" Text="Ready" Clicked="btnGetR_Clicked"/>
-                <Button x:Name="btnUpdate" Text="Update" Clicked="btnUpdate_Clicked"/>
-            </StackLayout>
-            
-            <StackLayout HorizontalOptions="CenterAndExpand" Orientation ="Horizontal">
-                <Button x:Name="btnDescriptor" Text="Obtenir Description" Clicked="btnDescriptor_Clicked"/>
-                <Button x:Name="btnGetDescRW" Text="Read/Write" Clicked="btnGetDescRW_Clicked"/>
-            </StackLayout>
-
+            <Button x:Name="btnChasseArret" Text="Arret Chasse" Clicked="btnChasseArret_Clicked"/>
+            <Button x:Name="btnSanglierVue" Text="Sanglier Vu" Clicked="btnSanglierVue_Clicked"/>
+            <Button x:Name="btnSanglierTuer" Text="Sanglier Tuer" Clicked="btnSanglierTuer_Clicked"/>
+            <Button x:Name="btnChevreuilVue" Text="Chevreuil Vu" Clicked="btnChevreuilVue_Clicked"/>
+            <Button x:Name="btnChevreuilTuer" Text="Chevreuil Tuer" Clicked="btnChevreuilTuer_Clicked"/>
+            <Button x:Name="btnRenardVue" Text="Renard Vu" Clicked="btnRenardVue_Clicked"/>
+            <Button x:Name="btnRenardTuer" Text="Renard Tuer" Clicked="btnRenardTuer_Clicked"/>
+           
             <ListView x:Name="lv" ItemSelected="lv_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
