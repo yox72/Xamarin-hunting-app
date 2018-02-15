@@ -8,6 +8,7 @@ namespace ComHunt.Views
     public partial class GererChassePage : ContentPage
     {
         public string NumberChasse2;
+        public bool Respo;
         public GererChassePage(string NumberChasse)
         {
             //NumberChasse2 = NumberChasse;

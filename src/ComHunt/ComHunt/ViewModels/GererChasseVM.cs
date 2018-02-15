@@ -13,6 +13,7 @@ namespace ComHunt.ViewModels
         public string NumberChasse;
 
         public ICommand demarrerCommand { get; set; }
+        public ICommand pauseCommand { get; set; }
         public ICommand arretCommand { get; set; }
 
         public GererChasseVM(Page page, string NomChasse)
@@ -26,6 +27,7 @@ namespace ComHunt.ViewModels
         {
             demarrerCommand = new Command(DemarrerChasse);
             arretCommand = new Command(ArretChasse);
+            pauseCommand = new Command(PauseChasse);
         }
 
         public async void DemarrerChasse()
@@ -36,6 +38,16 @@ namespace ComHunt.ViewModels
                 .Child(NumberChasse)
                 .Child("etat")
                 .PutAsync("Actif");
+        }
+
+        public async void PauseChasse()
+        {
+            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            await firebase
+                .Child(NumberChasse)
+                .Child(NumberChasse)
+                .Child("etat")
+                .PutAsync("Pause");
         }
 
         public async void ArretChasse()

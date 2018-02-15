@@ -165,6 +165,24 @@ namespace ComHunt.ViewModels
                     await firebase
                         .Child(NomChasse)
                         .Child(NomChasse)
+                        .Child("RenardToucher")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("ChevreuilToucher")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
+                        .Child("SanglierToucher")
+                        //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
+                        .PutAsync("0");
+                    await firebase
+                        .Child(NomChasse)
+                        .Child(NomChasse)
                         .Child("SanglierTuer")
                         //.WithAuth("<Authentication Token>") // <-- Add Auth token if required. Auth instructions further down in readme.
                         .PutAsync("0");

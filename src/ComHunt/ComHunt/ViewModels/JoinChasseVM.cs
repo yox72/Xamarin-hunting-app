@@ -14,6 +14,7 @@ namespace ComHunt.ViewModels
     {
         private Page _page;
         public event PropertyChangedEventHandler PropertyChanged;
+        bool Respo;
 
         public string NumeroJoinChasse { get; set; }
         public bool TireurChef { get; set; }
@@ -33,6 +34,11 @@ namespace ComHunt.ViewModels
 
         void initCommand(){
             entrerCommand = new Command(Entrer);
+        }
+
+        private void switchRespo_Toggled (object sender, ToggledEventArgs e)
+        {
+            Respo = e.Value;
         }
 
 
@@ -57,7 +63,8 @@ namespace ComHunt.ViewModels
                         .Child(NumeroJoinChasse)
                       .Child("nombreChasseursActifs")
                         .PutAsync(newnbChasseursActifs);
-                    await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
+                    //await _page.Navigation.PushAsync(new TestBDPage(NumeroJoinChasse));//Ouvirir vue JoinChasse
+                    await _page.Navigation.PushAsync(new BlushitBLEPage(NumeroJoinChasse));
                 }
             }
             catch (Exception)

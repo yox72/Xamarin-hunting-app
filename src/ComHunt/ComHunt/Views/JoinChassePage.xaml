@@ -27,6 +27,11 @@
             <Entry Text="{Binding NumeroJoinChasse}" Placeholder="Nom de la chasse"/>
             
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
+                <Switch x:Name="switchRespo" VerticalOptions="Center"/>
+                <Label Text="Responsable de battue" VerticalOptions="Center"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10">
                 <Switch VerticalOptions="Center"/>
                 <Label Text="Chef de ligne" VerticalOptions="Center"/>
             </StackLayout>

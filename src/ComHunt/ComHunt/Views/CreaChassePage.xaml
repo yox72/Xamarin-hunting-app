@@ -31,6 +31,12 @@
             
             <Label Text="Tireurs"/>
             <Entry Text="{Binding NbChasseurs}" Placeholder="Nombre de tireurs" Keyboard="Numeric"/>
+
+            <Label Text="Bracelets Chevreuil"/>
+            <Entry Text="" Placeholder="Nombre de bracelets" Keyboard="Numeric"/>
+
+            <Label Text="Bracelets Sanglier"/>
+            <Entry Text="" Placeholder="Nombre de bracelets" Keyboard="Numeric"/>
             
             <Button Text="Valider" Command="{Binding creationChasseCommand}" FontSize="Medium" HorizontalOptions="Center"/> 
         </StackLayout>

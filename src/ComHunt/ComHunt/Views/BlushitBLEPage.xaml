@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.BlushitBLEPage">
+	<ContentPage.Content>
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="20">
+            <Button x:Name="btnScanDev" FontSize="Large" Text="Scan" Clicked="btnScanDev_Clicked"/>
+            <Button x:Name="btnConnect" FontSize="Large" Text="Connection" Clicked="btnConnect_Clicked"/>
+            <ListView x:Name="lv" ItemSelected="lv_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding NativeDevice.ID}"/>
+                                <Label Text="{Binding NativeDevice.Name}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+	</ContentPage.Content>
+</ContentPage>

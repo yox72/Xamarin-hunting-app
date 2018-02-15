@@ -2,20 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.TestBDPage">
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="20">
-            <Button Text="Chevreuil Vue" Command ="{Binding chevreuilVueCommand}"/>
-            <Button Text="Renard Vue" Command ="{Binding renardVueCommand}"/>
-            <Button Text="Sanglier Vue" Command ="{Binding sanglierVueCommand}"/>
-            <Button Text="Chevreuil Tué" Command ="{Binding chevreuilTuerCommand}"/>
-            <Button Text="Renard Tué" Command ="{Binding renardTuerCommand}"/>
-            <Button Text="Sanglier Tué" Command ="{Binding sanglierTuerCommand}"/>
-            <Button Text="Get !" Clicked = "Handle_Clicked"/>
-            <ListView ItemsSource="{Binding .}" x:Name="_lst">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="Sanglier" Detail="{Binding Sanglier}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Label Text="Sanglier" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Vu" Command ="{Binding sanglierVueCommand}" FontSize = "15"/>
+                <Button Text="Touché" Command ="{Binding sanglierToucherCommand}" FontSize = "15"/>
+                <Button Text="Tué" Command ="{Binding sanglierTuerCommand}" FontSize = "15"/>
+            </StackLayout>
+            <Label Text="Chevreuil" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Vu" Command ="{Binding chevreuilVueCommand}" FontSize = "15"/>
+                <Button Text="Touché" Command ="{Binding chevreuilToucherCommand}" FontSize = "15"/>
+                <Button Text="Tué" Command ="{Binding chevreuilTuerCommand}" FontSize = "15"/>
+            </StackLayout>
+            <Label Text="Renard" FontSize="30"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Vu" Command ="{Binding renardVueCommand}" FontSize = "15"/>
+                <Button Text="Touché" Command ="{Binding renardToucherCommand}" FontSize = "15"/>  
+                <Button Text="Tué" Command ="{Binding renardTuerCommand}" FontSize = "15"/>
+            </StackLayout>
         </StackLayout>
 
     </ContentPage.Content>

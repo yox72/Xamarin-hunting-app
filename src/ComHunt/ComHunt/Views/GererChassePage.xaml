@@ -2,8 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ComHunt.Views.GererChassePage">
 	<ContentPage.Content>
         <StackLayout>
+            <Label Text="Gerer Chasse" FontSize="30"/>
+            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical">
             <Button Text="Appuyer pour démarrer la battue" Command="{Binding demarrerCommand}"/>
+            <Button Text="Appuyer pour mettre en pause la battue" Command="{Binding pauseCommand}"/>
             <Button Text="Appuyer pour arrêter la battue" Command="{Binding arretCommand}"/>
+            </StackLayout>
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

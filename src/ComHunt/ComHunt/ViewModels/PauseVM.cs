@@ -53,17 +53,17 @@ namespace ComHunt.ViewModels
 
         public async void Refresh()
         {
-            var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
+            /*var firebase = new FirebaseClient("https://comhunt-5d0c1.firebaseio.com/");
             var chasseEtat = (await firebase
                                 .Child(NumberChasse)
                                 .OnceAsync<Chasse>())
                                 .FirstOrDefault().Object.etat;
 
-            if (chasseEtat.Equals("Actif") /*state.Equals("True")*/)
+            if (chasseEtat.Equals("Actif"))
             {
                 _page.Navigation.PopModalAsync();
             }
-            else
+            else*/
                 await _page.DisplayAlert("Alerte", "Attente de l'activation du responsable de battue", "OK");//Afficher erreur 
         }
         /*public async void Refresh()
